@@ -1,0 +1,36 @@
+﻿<Page x:Class="Fiszki.FiszkiPackPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Fiszki"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Fiszki - PackPage" Height="450" Width="800">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0"/>
+            <RowDefinition Height="300"/>
+            <RowDefinition Height="100"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Button Content="Sprawdź odpowiedź" Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="2" VerticalAlignment="Top" Width="160" Height="43"/>
+        <Button Content="Następna fiszka" Grid.Column="1" HorizontalAlignment="Left" Margin="230,10,0,0" Grid.Row="2" VerticalAlignment="Top" Width="160" Height="43"/>
+        <TextBox Padding="1" TextAlignment="Center" Grid.Column="1" HorizontalAlignment="Left" Height="34" Margin="10,242,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="380" FontSize="20" TextChanged="TextBox_TextChanged_1"/>
+        <Rectangle Grid.Column="1" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="200" Margin="10,10,0,0" Grid.Row="1" Stroke="Black" VerticalAlignment="Top" Width="380"/>
+        <TextBlock TextAlignment="Center" Grid.Column="1" HorizontalAlignment="Left" Margin="10,108,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Fiszka" VerticalAlignment="Top" Height="34" Width="380" FontSize="20"/>
+        
+        <DataGrid AutoGenerateColumns="False" RowHeaderWidth="0" Margin="10,10,0,230" Grid.Row="1" SelectionChanged="DataGrid_SelectionChanged" RenderTransformOrigin="0.495,0.492" >
+            <DataGrid.Columns>
+                <DataGridTextColumn/>
+                <DataGridTextColumn/>
+                
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Page>
