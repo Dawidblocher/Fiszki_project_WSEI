@@ -1,5 +1,10 @@
-﻿using System;
+﻿using Dapper;
+using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Data.SQLite;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,16 +25,25 @@ namespace Fiszki
     /// </summary>
     public partial class FiszkiHome : Page
     {
+        public List<Category> Categories = new List<Category>();
+        
         public FiszkiHome()
         {
             InitializeComponent();
+            LoadCategory();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            // View Expense Report
             FiszkiPackPage packPage = new FiszkiPackPage();
             this.NavigationService.Navigate(packPage);
+
+        }
+
+        private void LoadCategory()
+        {
+            Categories = DatabaseAccess.LoadCategorys();
+            grid.DataContext = Categories;
 
         }
     }

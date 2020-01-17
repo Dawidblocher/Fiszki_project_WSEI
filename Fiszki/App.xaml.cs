@@ -13,9 +13,7 @@ namespace Fiszki
     /// </summary>
     public partial class App : Application
     {
-        static string databaseName = "fiszki.db";
-        static string pathFolder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-        public static string databasePath = System.IO.Path.Combine(pathFolder, databaseName);
+        
 
     }
 }
