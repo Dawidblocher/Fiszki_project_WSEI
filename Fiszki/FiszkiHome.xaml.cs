@@ -35,7 +35,7 @@ namespace Fiszki
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            FiszkiPackPage packPage = new FiszkiPackPage();
+            FiszkiPackPage packPage = new FiszkiPackPage(this.CategoryListBox.SelectedItem as ListBoxItem);
             this.NavigationService.Navigate(packPage);
 
         }

@@ -111,6 +111,8 @@
     </Compile>
     <Compile Include="class\Category.cs" />
     <Compile Include="class\DatabaseAccess.cs" />
+    <Compile Include="class\Fiche.cs" />
+    <Compile Include="class\Game.cs" />
     <Compile Include="FiszkiHome.xaml.cs">
       <DependentUpon>FiszkiHome.xaml</DependentUpon>
     </Compile>

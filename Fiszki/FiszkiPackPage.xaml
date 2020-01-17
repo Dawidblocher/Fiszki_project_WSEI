@@ -9,6 +9,7 @@
       Title="Fiszki - PackPage" Height="450" Width="800">
 
     <Grid>
+        
         <Grid.RowDefinitions>
             <RowDefinition Height="0"/>
             <RowDefinition Height="300"/>
@@ -19,18 +20,16 @@
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Button Content="Sprawdź odpowiedź" Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="2" VerticalAlignment="Top" Width="160" Height="43"/>
-        <Button Content="Następna fiszka" Grid.Column="1" HorizontalAlignment="Left" Margin="230,10,0,0" Grid.Row="2" VerticalAlignment="Top" Width="160" Height="43"/>
-        <TextBox Padding="1" TextAlignment="Center" Grid.Column="1" HorizontalAlignment="Left" Height="34" Margin="10,242,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="380" FontSize="20" TextChanged="TextBox_TextChanged_1"/>
+        <Button Click="Check_Aswer_Button_Click" Content="Sprawdź odpowiedź" Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="2" VerticalAlignment="Top" Width="160" Height="43"/>
+        <Button Click="Next_Fiche_Button_Click" Content="Następna fiszka" Grid.Column="1" HorizontalAlignment="Left" Margin="230,10,0,0" Grid.Row="2" VerticalAlignment="Top" Width="160" Height="43"/>
+        <TextBox Name="AswerBox" Padding="1" TextAlignment="Center" Grid.Column="1" HorizontalAlignment="Left" Height="34" Margin="10,242,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="380" FontSize="20" TextChanged="AswerBox_TextChanged" />
         <Rectangle Grid.Column="1" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="200" Margin="10,10,0,0" Grid.Row="1" Stroke="Black" VerticalAlignment="Top" Width="380"/>
-        <TextBlock TextAlignment="Center" Grid.Column="1" HorizontalAlignment="Left" Margin="10,108,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Fiszka" VerticalAlignment="Top" Height="34" Width="380" FontSize="20"/>
-        
-        <DataGrid AutoGenerateColumns="False" RowHeaderWidth="0" Margin="10,10,0,230" Grid.Row="1" SelectionChanged="DataGrid_SelectionChanged" RenderTransformOrigin="0.495,0.492" >
-            <DataGrid.Columns>
-                <DataGridTextColumn/>
-                <DataGridTextColumn/>
-                
-            </DataGrid.Columns>
-        </DataGrid>
+        <TextBlock Name="FicheText" TextAlignment="Center" Grid.Column="1" HorizontalAlignment="Left" Margin="10,108,0,0" Grid.Row="1" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="34" Width="380" FontSize="20"/>
+        <Label Name="LabelCategory" HorizontalAlignment="Left" Margin="42,40,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+        <Label Name="LabelPoints" HorizontalAlignment="Left" Margin="42,55,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+        <Label Name="LabelFaul" HorizontalAlignment="Left" Margin="42,70,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+
+
+
     </Grid>
 </Page>

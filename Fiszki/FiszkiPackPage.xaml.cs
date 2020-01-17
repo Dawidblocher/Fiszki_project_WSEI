@@ -20,22 +20,88 @@ namespace Fiszki
     /// </summary>
     public partial class FiszkiPackPage : Page
     {
+        Game newGame;
+        ListBoxItem DataContext { get; set; }
+        Fiche activeFiche { get; set; }
         public FiszkiPackPage()
         {
             InitializeComponent();
+            
         }
 
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        public FiszkiPackPage(ListBoxItem data) : this()
         {
-
+            DataContext = data;
+            LabelCategory.Content = $"Kategoria: {DataContext.Content.ToString()}";
+            newGame = new Game(DataContext.Content.ToString());
+            generateFiche();
+            initRound();
         }
 
-        private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        public void generateFiche()
         {
-
+            if(newGame.fichePack.Count > 0)
+            {
+                Random rnd = new Random();
+                int poczatek = 0;
+                int koniec = newGame.fichePack.Count;
+                int wylosowana = rnd.Next(poczatek, koniec); // dla przedziału 0-10
+                activeFiche = newGame.fichePack[wylosowana];
+                initRound();
+            }
+            else
+            {
+                FicheText.Text = "Lekcja skończona";
+                LabelPoints.Content = $"Zdobyte punkty: {newGame.points}";
+                LabelFaul.Content = $"Pomyłki: {newGame.faul}";
+                AswerBox.Text = "";
+                activeFiche = null;
+            }
         }
 
-        private void TextBox_TextChanged_1(object sender, TextChangedEventArgs e)
+        public void initRound()
+        {
+            FicheText.Text = activeFiche.English;
+            LabelPoints.Content = $"Zdobyte punkty: {newGame.points}";
+            LabelFaul.Content = $"Pomyłki: {newGame.faul}";
+            AswerBox.Text = "";
+        }
+
+        public void updateFichePack()
+        {
+            newGame.fichePack.Remove(activeFiche);
+        }
+
+        private void Check_Aswer_Button_Click(object sender, RoutedEventArgs e)
+        {
+            if (newGame.fichePack.Count > 0)
+            {
+                string answer = AswerBox.Text;
+                answer = answer.ToLower();
+                if (answer == activeFiche.Polish)
+                {
+                    newGame.points += 1;
+                    updateFichePack();
+                    generateFiche();
+                }
+                else
+                {
+                    newGame.faul += 1;
+                    initRound();
+                }
+            }   
+        }
+        private void Next_Fiche_Button_Click(object sender, RoutedEventArgs e)
+        {
+            if (newGame.fichePack.Count > 0)
+            {
+                newGame.faul += 1;
+                updateFichePack();
+                generateFiche();
+            }
+        }
+
+        private void AswerBox_TextChanged(object sender, TextChangedEventArgs e)
         {
 
         }
