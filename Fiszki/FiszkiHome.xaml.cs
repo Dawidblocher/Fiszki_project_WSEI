@@ -43,7 +43,14 @@ namespace Fiszki
         private void LoadCategory()
         {
             Categories = DatabaseAccess.LoadCategorys();
-            grid.DataContext = Categories;
+            foreach(var cat in Categories)
+            {
+                ListBoxItem item = new ListBoxItem();
+                item.Content = cat.nazwa;
+                CategoryListBox.Items.Add(item);
+                
+            }
+            
 
         }
     }
