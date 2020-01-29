@@ -41,7 +41,39 @@ namespace Fiszki
                 return output.ToList();
             }
         }
+        public static void InsertFicheToRepeats(int id, string English, string Polish, int CategoryId)
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                string query = $"INSERT INTO Repeats (Id, English, Polish, CategoryId) Values ('{id}', '{English}', '{Polish}', '{CategoryId}')";
+                string query2 = $"SELECT * from Repeats where Id='{id}'";
+                var output = cnn.Query<Fiche>(query2, new DynamicParameters());
+                var resault = output.ToList();
+                if(resault.Count == 0)
+                {
+                    var affectedRows = cnn.Execute(query);
+                }
+            }
+        }
 
+        public static List<Fiche> LoadFicheRepeats()
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                string query = $"select * from Repeats";
+                var output = cnn.Query<Fiche>(query, new DynamicParameters());
+                return output.ToList();
+            }
+        }
+
+        public static void DeleteFicheFromRepeats(int id)
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                string query = $"DELETE FROM Repeats WHERE id='{id}'";
+                var affectedRows = cnn.Execute(query);
+            }
+        }
 
         private static string LoadConnectionString(string id = "Default")
         {

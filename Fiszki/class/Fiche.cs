@@ -11,6 +11,6 @@ namespace Fiszki
         public int Id { get; set; }
         public string English { get; set; }
         public string Polish { get; set; }
-        public string Category { get; set; }
+        public int CategoryId { get; set; }
     }
 }

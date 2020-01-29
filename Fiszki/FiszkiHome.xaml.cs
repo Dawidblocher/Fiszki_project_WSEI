@@ -40,6 +40,13 @@ namespace Fiszki
 
         }
 
+        private void Button_Click_Repeats(object sender, RoutedEventArgs e)
+        {
+            FiszkiRepeatPage packPage = new FiszkiRepeatPage();
+            this.NavigationService.Navigate(packPage);
+
+        }
+
         private void LoadCategory()
         {
             Categories = DatabaseAccess.LoadCategorys();

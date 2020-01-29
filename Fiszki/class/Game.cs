@@ -11,16 +11,15 @@ namespace Fiszki
         public int points = 0;
         public int faul = 0;
         public int gameCategoryId { get; set; }
-
         public List<Fiche> fichePack { get; set; }
-
+        public Game()
+        {
+            fichePack = DatabaseAccess.LoadFicheRepeats();
+        }
         public Game(string category)
         {
             this.gameCategoryId = DatabaseAccess.GetCategoryId(category)[0];
             fichePack = DatabaseAccess.LoadFiche(this.gameCategoryId);
         }
-
-
-        
     }
 }

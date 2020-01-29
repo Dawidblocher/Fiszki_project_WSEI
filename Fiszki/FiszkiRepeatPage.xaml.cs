@@ -16,35 +16,28 @@ using System.Windows.Shapes;
 namespace Fiszki
 {
     /// <summary>
-    /// Logika interakcji dla klasy FiszkiPackPage.xaml
+    /// Logika interakcji dla klasy FiszkiRepeatPage.xaml
     /// </summary>
-    public partial class FiszkiPackPage : Page
+    public partial class FiszkiRepeatPage : Page
     {
         Game newGame;
-        ListBoxItem DataContext { get; set; }
+        
         Fiche activeFiche { get; set; }
-        public FiszkiPackPage()
+        public FiszkiRepeatPage()
         {
             InitializeComponent();
-        }
-
-        public FiszkiPackPage(ListBoxItem data) : this()
-        {
-            DataContext = data;
-            LabelCategory.Content = $"Kategoria: {DataContext.Content.ToString()}";
-            newGame = new Game(DataContext.Content.ToString());
+            newGame = new Game();
             generateFiche();
             initRound();
         }
-
         public void generateFiche()
         {
-            if(newGame.fichePack.Count > 0)
+            if (newGame.fichePack.Count > 0)
             {
                 Random rnd = new Random();
                 int poczatek = 0;
                 int koniec = newGame.fichePack.Count;
-                int wylosowana = rnd.Next(poczatek, koniec); 
+                int wylosowana = rnd.Next(poczatek, koniec);
                 activeFiche = newGame.fichePack[wylosowana];
                 initRound();
             }
@@ -71,6 +64,16 @@ namespace Fiszki
             newGame.fichePack.Remove(activeFiche);
         }
 
+        private void Show_Answer_Button_Click(object sender, RoutedEventArgs e)
+        {
+            if (newGame.fichePack.Count > 0)
+            {
+                LabelShowAnswer.Content = this.activeFiche.Polish;
+                newGame.faul += 1;
+                initRound();
+            }
+        }
+
         private void Check_Aswer_Button_Click(object sender, RoutedEventArgs e)
         {
             if (newGame.fichePack.Count > 0)
@@ -79,17 +82,17 @@ namespace Fiszki
                 answer = answer.ToLower();
                 if (answer == activeFiche.Polish)
                 {
+                    DatabaseAccess.DeleteFicheFromRepeats(activeFiche.Id);
                     newGame.points += 1;
                     updateFichePack();
                     generateFiche();
                 }
                 else
                 {
-                    newGame.faul += 1;                    
+                    newGame.faul += 1;
                     initRound();
-
                 }
-            }   
+            }
         }
         private void Next_Fiche_Button_Click(object sender, RoutedEventArgs e)
         {
